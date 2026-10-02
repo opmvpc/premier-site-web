@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solitaire Invaders</title>
+    <meta
+      name="description"
+      content="Un jeu qui mélange le solitaire et Space Invaders."
+    />
+
+    <!-- Polices Google Fonts (chargées depuis le site officiel) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Notre feuille de style -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===== EN-TÊTE ===== -->
+    <header class="entete">
+      <h1 class="titre">Solitaire Invaders</h1>
+    </header>
+
+    <main class="table">
+      <!-- ===== HUD : les infos de la partie ===== -->
+      <section class="hud" aria-label="Informations de la partie">
+        <div class="hud-bloc">
+          <span class="hud-label">Score</span>
+          <span id="score" class="hud-valeur">0</span>
+        </div>
+
+        <div class="hud-bloc">
+          <span class="hud-label">Pioche</span>
+          <span id="pioche-restante" class="hud-valeur">52</span>
+        </div>
+
+        <div class="hud-bloc">
+          <span class="hud-label">Munition</span>
+          <span id="munition" class="hud-valeur carte-mini">–</span>
+        </div>
+
+        <!-- Les 4 fondations : une par enseigne -->
+        <div class="hud-bloc">
+          <span class="hud-label">Fondations</span>
+          <div class="fondations">
+            <span id="fondation-0" class="fondation noir" data-enseigne="♠"
+              >♠</span
+            >
+            <span id="fondation-1" class="fondation rouge" data-enseigne="♥"
+              >♥</span
+            >
+            <span id="fondation-2" class="fondation rouge" data-enseigne="♦"
+              >♦</span
+            >
+            <span id="fondation-3" class="fondation noir" data-enseigne="♣"
+              >♣</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ZONE DE JEU ===== -->
+      <div class="cadre-jeu">
+        <!-- Le canvas : c'est ici que script.js dessine tout le jeu -->
+        <canvas id="zone-jeu" width="800" height="600">
+          Ton navigateur ne supporte pas le canvas. Essaie avec Firefox, Chrome
+          ou Edge.
+        </canvas>
+
+        <!-- Écran titre (affiché au chargement) -->
+        <div id="ecran-titre" class="ecran">
+          <h2 class="ecran-titre">Prêt à défendre la table ?</h2>
+          <p>
+            Les cartes descendent vers ton vaisseau. Pour en détruire une, tire
+            une carte de <strong>couleur opposée</strong> et de
+            <strong>valeur juste en dessous</strong>.
+          </p>
+          <p class="exemple">Exemple : un 6♥ détruit un 7♠.</p>
+          <p>
+            Attrape les As pour ouvrir les fondations, puis remplis-les pour
+            gagner.
+          </p>
+          <button id="btn-jouer" class="bouton" type="button">Jouer</button>
+        </div>
+
+        <!-- Écran de fin (caché au départ, script.js l'affiche) -->
+        <div id="ecran-fin" class="ecran cache">
+          <h2 id="titre-fin" class="ecran-titre">Partie terminée</h2>
+          <p id="message-fin">Les cartes ont atteint ton vaisseau.</p>
+          <button id="btn-rejouer" class="bouton" type="button">Rejouer</button>
+        </div>
+      </div>
+
+      <!-- ===== RAPPEL DES COMMANDES ===== -->
+      <section class="commandes" aria-label="Commandes du jeu">
+        <p><kbd>←</kbd> <kbd>→</kbd> Déplacer</p>
+        <p><kbd>Espace</kbd> Tirer</p>
+        <p><kbd>P</kbd> Piocher une autre munition</p>
+        <p><kbd>Échap</kbd> Pause</p>
+      </section>
+    </main>
+
+    <footer class="pied">
+      <p>Projet réalisé en HTML, CSS et JavaScript.</p>
+    </footer>
+
+    <!-- Bibliothèque optionnelle : confettis à la victoire (CDN jsDelivr, recommandé par la doc officielle).
+       Si elle ne charge pas, le jeu fonctionne quand même. -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <!-- Notre script du jeu, chargé en dernier -->
+    <script src="script.js"></script>
+  </body>
+</html>
